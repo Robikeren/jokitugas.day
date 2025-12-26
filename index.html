@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joki Tugas - Bantuan Akademik Profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 193, 7, 0.1) 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            transform: translateY(30px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #ffc107 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b8bfd8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            color: #0a0e27;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.5);
+        }
+
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffc107, #ffb300);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: #1a1f3a;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 193, 7, 0.2);
+            border-color: #ffc107;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffc107, #ffb300);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .btn-small {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid #ffc107;
+            margin-top: 10px;
+        }
+
+        .btn-small:hover {
+            background: #ffc107;
+            color: #0a0e27;
+        }
+
+        .special-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, #1a1f3a 0%, #252b4a 100%);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .special-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 193, 7, 0.3);
+        }
+
+        .special-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #ffc107;
+        }
+
+        .special-card p {
+            color: #b8bfd8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .stats-section {
+            background: #1a1f3a;
+            padding: 80px 20px;
+        }
+
+        .chart-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: #0a0e27;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: #ffc107;
+        }
+
+        .chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            gap: 10px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .bar {
+            width: 100%;
+            background: linear-gradient(180deg, #ffc107 0%, #ff9800 100%);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: growBar 1.5s ease forwards;
+            transform-origin: bottom;
+        }
+
+        @keyframes growBar {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        .bar:hover {
+            background: linear-gradient(180deg, #ffed4e 0%, #ffc107 100%);
+            transform: scaleY(1.05);
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 600;
+            color: #ffc107;
+            font-size: 0.9rem;
+        }
+
+        .bar-label {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #b8bfd8;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .benefit-item {
+            background: #1a1f3a;
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            border-color: #ffc107;
+            transform: translateX(10px);
+        }
+
+        .check-icon {
+            width: 40px;
+            height: 40px;
+            background: #ffc107;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #0a0e27;
+            flex-shrink: 0;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: #0a0e27;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #0a0e27;
+            color: #ffc107;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(10, 14, 39, 0.3);
+        }
+
+        footer {
+            background: #000000;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: #ffc107;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        footer p {
+            color: #b8bfd8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+
+            .chart {
+                height: 250px;
+            }
+
+            .bar-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn-primary {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+
+            .chart {
+                gap: 5px;
+            }
+
+            .bar-value {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Optimalkan Waktumu, Raih Prestasimu!</h1>
+            <p>Jasa pengerjaan tugas dan olah data profesional untuk mahasiswa & pelajar</p>
+            <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20joki%20tugas" class="btn-primary" target="_blank">Order via WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="layanan">
+        <div class="container">
+            <h2 class="section-title">Layanan Kami</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📖</div>
+                    <h3>Tugas Sekolah</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Tugas%20Sekolah" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>Tugas Kuliah</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Tugas%20Kuliah" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📝</div>
+                    <h3>Skripsi</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Skripsi" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Thesis</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Thesis" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3>Jurnal</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Jurnal" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>Essay</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Essay" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📰</div>
+                    <h3>Artikel</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Artikel" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Paper</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Paper" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Coding</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Coding" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📑</div>
+                    <h3>Makalah</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Makalah" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Proposal</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Proposal" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Laporan</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Laporan" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔢</div>
+                    <h3>Olah Data</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Olah%20Data" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📽️</div>
+                    <h3>PowerPoint</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20PowerPoint" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📌</div>
+                    <h3>Resume</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Resume" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Cek Plagiasi</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Cek%20Plagiasi" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⬇️</div>
+                    <h3>Penurunan Plagiasi</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Penurunan%20Plagiasi" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Desain</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Desain" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⭐</div>
+                    <h3>Review</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Review" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>Revisi / Rapihin Tugas</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Revisi%20Tugas" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⌨️</div>
+                    <h3>Tugas Tulis / Ketik</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Tugas%20Tulis" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">➕</div>
+                    <h3>Dan lain-lain</h3>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20joki%20tugas" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #0a0e27; padding: 80px 20px;">
+        <div class="container">
+            <h2 class="section-title">Layanan Premium</h2>
+            <div class="special-services">
+                <div class="special-card">
+                    <h3>Tutor Online</h3>
+                    <p>Bimbingan belajar online dengan tutor berpengalaman untuk membantu kamu memahami materi dengan lebih baik</p>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20order%20Tutor%20Online" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="special-card">
+                    <h3>Konsultasi Tugas</h3>
+                    <p>Konsultasi mendalam untuk tugas-tugas yang membutuhkan diskusi dan arahan khusus dari ahli</p>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20Konsultasi%20Tugas" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+                <div class="special-card">
+                    <h3>Konsultasi Lomba Karya Ilmiah</h3>
+                    <p>Pendampingan intensif untuk persiapan lomba karya ilmiah dari perencanaan hingga finalisasi</p>
+                    <a href="https://wa.me/62859184078815?text=Halo%20saya%20ingin%20Konsultasi%20Lomba%20Karya%20Ilmiah" class="btn-small" target="_blank">Pesan via WA</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Ringkasan Order 2025</h2>
+            <div class="chart-container">
+                <div class="chart-title">Total Order Per Bulan</div>
+                <div class="chart">
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 225px;">
+                            <span class="bar-value">135</span>
+                        </div>
+                        <div class="bar-label">Feb</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 215px;">
+                            <span class="bar-value">129</span>
+                        </div>
+                        <div class="bar-label">Mar</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 187px;">
+                            <span class="bar-value">112</span>
+                        </div>
+                        <div class="bar-label">Apr</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 210px;">
+                            <span class="bar-value">126</span>
+                        </div>
+                        <div class="bar-label">Mei</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 197px;">
+                            <span class="bar-value">118</span>
+                        </div>
+                        <div class="bar-label">Jun</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 233px;">
+                            <span class="bar-value">140</span>
+                        </div>
+                        <div class="bar-label">Jul</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 220px;">
+                            <span class="bar-value">132</span>
+                        </div>
+                        <div class="bar-label">Agu</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 202px;">
+                            <span class="bar-value">121</span>
+                        </div>
+                        <div class="bar-label">Sep</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 228px;">
+                            <span class="bar-value">137</span>
+                        </div>
+                        <div class="bar-label">Okt</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 213px;">
+                            <span class="bar-value">128</span>
+                        </div>
+                        <div class="bar-label">Nov</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar" style="height: 188px;">
+                            <span class="bar-value">113</span>
+                        </div>
+                        <div class="bar-label">Des</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Kenapa Harus Kami?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Free Revisi</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Proses Cepat</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Profesional</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>No Plagiarism</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>No Bot / AI</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Harga Terjangkau</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Fast Response</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Revisi tanpa biaya tambahan</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Tepat waktu</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Tim berpengalaman</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>Bonus laporan Turnitin</span>
+                </div>
+                <div class="benefit-item">
+                    <div class="check-icon">✓</div>
+                    <span>100% dikerjakan Manual</span>
+                </div>
